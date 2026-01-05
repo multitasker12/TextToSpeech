@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Voice Studio - Text to Speech Converter</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Convert text to natural Hindi voice with AI Voice Studio. 10 professional voices, instant generation, free online text to speech converter.">
+    <meta name="keywords" content="text to speech, Hindi TTS, AI voice, voice converter, speech synthesis, Hindi voice generator, free TTS, online voice generator">
+    <meta name="author" content="AI Voice Studio">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Hindi">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="AI Voice Studio - Hindi Text to Speech Converter">
+    <meta property="og:description" content="Convert text to natural Hindi voice with 10 professional voices. Free online text to speech converter.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://username.github.io/ai-voice-studio">
+    <meta property="og:image" content="https://username.github.io/ai-voice-studio/og-image.jpg">
+    <meta property="og:site_name" content="AI Voice Studio">
+    <meta property="og:locale" content="hi_IN">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Voice Studio - Hindi Text to Speech">
+    <meta name="twitter:description" content="Convert text to natural Hindi voice with 10 professional voices. Free online TTS.">
+    <meta name="twitter:image" content="https://username.github.io/ai-voice-studio/twitter-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://username.github.io/ai-voice-studio">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "AI Voice Studio",
+        "description": "Convert text to natural Hindi voice with AI Voice Studio. 10 professional voices, instant generation.",
+        "url": "https://username.github.io/ai-voice-studio",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "AI Voice Studio"
+        }
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+    
+    <!-- External Libraries -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 3D Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+    
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <!-- Logo and Title -->
+                <div class="logo-section">
+                    <div class="logo">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <div class="brand-name">
+                        <h1>AI Voice Studio</h1>
+                        <p>Professional Text-to-Speech Converter</p>
+                    </div>
+                </div>
+                
+                <!-- Current Time Display -->
+                <div class="time-display">
+                    <i class="far fa-clock"></i>
+                    <span id="current-time">00:00:00</span>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="converter-container">
+                <!-- Input Section -->
+                <section class="input-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-keyboard"></i> Enter Your Text</h2>
+                        <div class="char-counter">
+                            <span id="char-count">0</span> / 5000 characters
+                        </div>
+                    </div>
+                    
+                    <div class="text-input-container">
+                        <textarea 
+                            id="text-input" 
+                            placeholder="Type or paste your text here... Maximum 5000 characters supported."
+                            maxlength="5000"
+                            rows="8"
+                        ></textarea>
+                        
+                        <div class="input-actions">
+                            <button class="btn btn-secondary" id="clear-btn">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                            <button class="btn btn-secondary" id="paste-btn">
+                                <i class="fas fa-paste"></i> Paste
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Voice Selection Section -->
+                <section class="voice-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-user-circle"></i> Choose Voice</h2>
+                    </div>
+                    
+                    <div class="voice-grid">
+                        <!-- Male Voices -->
+                        <div class="voice-group">
+                            <h3><i class="fas fa-male"></i> Male Voices</h3>
+                            <div class="voice-options">
+                                <div class="voice-option" data-voice="male-professional" data-gender="male" data-lang="hi-IN">
+                                    <div class="voice-avatar male">
+                                        <i class="fas fa-user-tie"></i>
+                                    </div>
+                                    <div class="voice-info">
+                                        <h4>Professional Hindi</h4>
+                                        <p>गंभीर, प्राधिकारिक टोन</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="voice-option" data-voice="male-friendly" data-gender="male" data-lang="hi-IN">
+                                    <div class="voice-avatar male">
+                                        <i class="fas fa-smile"></i>
+                                    </div>
+                                    <div class="voice-info">
+                                        <h4>Friendly Hindi</h4>
+                                        <p>गर्म, संवादात्मक</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="voice-option" data-voice="male-news" data-gender="male" data-lang="hi-IN">
+                                    <div class="voice-avatar male">
+                                        <i class="fas fa-newspaper"></i>
+                                    </div>
+                                    <div class="voice-info">
+                                        <h4>News Anchor Hindi</h4>
+                                        <p>स्पष्ट, सुसंगत</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="voice-option" data-voice="male-calm" data-gender="male" data-lang="hi-IN">
+                                    <div class="voice-avatar male">
+                                        <i class="fas fa-spa"></i>
+                                    </div>
+                                    <div class="voice-info">
+                                        <h4>Calm Hindi</h4>
+                                        <p>शांत, शांत करने वाला</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="voice-option" data-voice="male-energetic" data-gender="male" data-lang="hi-IN">
+                                    <div class="voice-avatar male">
+                                        <i class="fas fa-bolt"></i>
+                                    </div>
+                                    <div class="voice-info">
+                                        <h4>Energetic Hindi</h4>
+                                        <p>गतिशील, उत्साहजनक</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Female Voices -->
+                        <div class="voice-group">
+                            <h3><i class="fas fa-female"></i> Female Voices</h3>
+                            <div class="voice-options">
+                                <div class="voice-option" data-voice="female-professional" data-gender="female" data-lang="hi-IN">
+                                    <div class="voice-avatar female">
+                                        <i class="fas fa-user-tie"></i>
+                                    </div>
+                                    <div class="voice-info">
+                                        <h4>Professional Hindi</h4>
+                                        <p>स्पष्ट, आत्मविश्वास से भरा टोन</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="voice-option" data-voice="female-friendly" data-gender="female" data-lang="hi-IN">
+                                    <div class="voice-avatar female">
+                                        <i class="fas fa-smile"></i>
+                                    </div>
+                                    <div class="voice-info">
+                                        <h4>Friendly Hindi</h4>
+                                        <p>गर्म, सुलभ</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="voice-option" data-voice="female-news" data-gender="female" data-lang="hi-IN">
+                                    <div class="voice-avatar female">
+                                        <i class="fas fa-newspaper"></i>
+                                    </div>
+                                    <div class="voice-info">
+                                        <h4>News Anchor Hindi</h4>
+                                        <p>पेशेवर, स्पष्ट</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="voice-option" data-voice="female-calm" data-gender="female" data-lang="hi-IN">
+                                    <div class="voice-avatar female">
+                                        <i class="fas fa-spa"></i>
+                                    </div>
+                                    <div class="voice-info">
+                                        <h4>Calm Hindi</h4>
+                                        <p>कोमल, शांत करने वाला</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="voice-option" data-voice="female-energetic" data-gender="female" data-lang="hi-IN">
+                                    <div class="voice-avatar female">
+                                        <i class="fas fa-bolt"></i>
+                                    </div>
+                                    <div class="voice-info">
+                                        <h4>Energetic Hindi</h4>
+                                        <p>उज्ज्वल, उत्साहजनक</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Settings Section -->
+                <section class="settings-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-sliders-h"></i> Voice Settings</h2>
+                    </div>
+                    
+                    <div class="settings-grid">
+                        <!-- Speed Control -->
+                        <div class="setting-item">
+                            <label for="speed-slider">
+                                <i class="fas fa-tachometer-alt"></i>
+                                Speech Speed
+                                <span id="speed-value">1.0x</span>
+                            </label>
+                            <input 
+                                type="range" 
+                                id="speed-slider" 
+                                min="0.5" 
+                                max="2.0" 
+                                step="0.1" 
+                                value="1.0"
+                                class="slider"
+                            >
+                            <div class="slider-labels">
+                                <span>Slow</span>
+                                <span>Normal</span>
+                                <span>Fast</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Pitch Control -->
+                        <div class="setting-item">
+                            <label for="pitch-slider">
+                                <i class="fas fa-music"></i>
+                                Voice Pitch
+                                <span id="pitch-value">1.0</span>
+                            </label>
+                            <input 
+                                type="range" 
+                                id="pitch-slider" 
+                                min="0.5" 
+                                max="2.0" 
+                                step="0.1" 
+                                value="1.0"
+                                class="slider"
+                            >
+                            <div class="slider-labels">
+                                <span>Low</span>
+                                <span>Normal</span>
+                                <span>High</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Volume Control -->
+                        <div class="setting-item">
+                            <label for="volume-slider">
+                                <i class="fas fa-volume-up"></i>
+                                Volume
+                                <span id="volume-value">100%</span>
+                            </label>
+                            <input 
+                                type="range" 
+                                id="volume-slider" 
+                                min="0" 
+                                max="100" 
+                                step="5" 
+                                value="100"
+                                class="slider"
+                            >
+                            <div class="slider-labels">
+                                <span>0%</span>
+                                <span>50%</span>
+                                <span>100%</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Generate Button -->
+                <section class="generate-section">
+                    <button class="btn btn-primary btn-large" id="generate-btn">
+                        <i class="fas fa-magic"></i>
+                        Generate Speech
+                    </button>
+                    
+                    <div class="loading-spinner" id="loading-spinner" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <span>Generating your speech...</span>
+                    </div>
+                </section>
+                
+                <!-- Audio Player Section -->
+                <section class="audio-section" id="audio-section" style="display: none;">
+                    <div class="section-header">
+                        <h2><i class="fas fa-play-circle"></i> Your Generated Audio</h2>
+                    </div>
+                    
+                    <div class="audio-player">
+                        <audio id="audio-player" controls></audio>
+                        
+                        <div class="audio-info">
+                            <div class="audio-details">
+                                <p><strong>Duration:</strong> <span id="audio-duration">0:00</span></p>
+                                <p><strong>Size:</strong> <span id="audio-size">0 KB</span></p>
+                                <p><strong>Format:</strong> MP3</p>
+                            </div>
+                            
+                            <div class="audio-actions">
+                                <button class="btn btn-success" id="download-btn">
+                                    <i class="fas fa-download"></i>
+                                    Download MP3
+                                </button>
+                                <button class="btn btn-secondary" id="share-btn">
+                                    <i class="fas fa-share"></i>
+                                    Share
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        
+        <!-- Footer Section -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-microphone-alt"></i> AI Voice Studio</h3>
+                    <p>Professional text-to-speech conversion with natural human voices. Convert your text to high-quality audio instantly.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-link"></i> Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#support">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-cog"></i> Features</h3>
+                    <ul>
+                        <li>10 Professional Voices</li>
+                        <li>Instant Audio Download</li>
+                        <li>3D Animated Interface</li>
+                        <li>Mobile Responsive</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-envelope"></i> Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> support@aivoicestudio.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> San Francisco, CA</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI Voice Studio. All rights reserved. | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Share Modal -->
+    <div class="modal" id="share-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-share"></i> Share Audio</h3>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="share-options">
+                    <button class="share-btn" data-platform="facebook">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </button>
+                    <button class="share-btn" data-platform="twitter">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </button>
+                    <button class="share-btn" data-platform="linkedin">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </button>
+                    <button class="share-btn" data-platform="whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </button>
+                </div>
+                <div class="share-link">
+                    <input type="text" id="share-link" readonly>
+                    <button class="btn btn-secondary" id="copy-link">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notification Toast -->
+    <div class="toast" id="toast" style="display: none;">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="toast-message">Success!</span>
+        </div>
+    </div>
+    
+    <!-- External Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
